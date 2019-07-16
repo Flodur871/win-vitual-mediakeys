@@ -16,10 +16,6 @@ I found this script to be the most useful when using any windows desktop media p
     </thead>
     <tbody>
         <tr>
-            <th>Disable/Enable</th>
-            <td><kbd>Ctrl</kbd> + <kbd>Shift</kbd></td>
-        </tr>
-        <tr>
             <th>Play/pause</th>
             <td><kbd>Ctrl</kbd> + <kbd>Space</kbd></td>
         </tr>
@@ -42,6 +38,10 @@ I found this script to be the most useful when using any windows desktop media p
         <tr>
             <th>Mute</th>
             <td><kbd>Ctrl</kbd> + <kbd>M</kbd></td>
+        </tr>
+        <tr>
+            <th>Disable/enable</th>
+            <td><kbd>Ctrl</kbd> + <kbd>Shift</kbd></td>
         </tr>
     </tbody>
 </table>
