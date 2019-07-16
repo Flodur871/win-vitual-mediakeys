@@ -1,5 +1,6 @@
 from win32api import keybd_event
 from pynput import keyboard
+from win10toast import ToastNotifier
 
 
 class Ls(object):
@@ -9,6 +10,7 @@ class Ls(object):
         self.kpress = {x.value.vk: self.kpress[x] for x in self.kpress.keys()}
         self.kpress[ord('M')] = 0xAD
 
+        self.toaster = ToastNotifier()
         self.ctrl = False
         self.enabled = True
         self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release,
@@ -22,6 +24,7 @@ class Ls(object):
         
         if self.ctrl and self.is_shift(key):
             self.enabled = not self.enabled
+            self.toaster.show_toast('Media Controller', 'Media keys are {}'.format('enabled' if self.enabled else 'disabled'), duration=1.5, threaded=True)
 
     def on_release(self, key):
         if self.is_control(key):
