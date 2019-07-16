@@ -39,5 +39,9 @@ I found this script to be the most useful when using any windows desktop media p
             <th>Mute</th>
             <td><kbd>Ctrl</kbd> + <kbd>M</kbd></td>
         </tr>
+        <tr>
+            <th>Disable/Enable media players</th>
+            <td><kbd>Ctrl</kbd> + <kbd>Shift</kbd></td>
+        </tr>
     </tbody>
 </table>
