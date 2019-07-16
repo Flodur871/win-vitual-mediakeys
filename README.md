@@ -1,7 +1,8 @@
 # Windows Virtual media keys
 
+The following is a python script made in order to enable keyboards that came without built in keyboards controls (such as my work keyboard) to still use these controls via keyboards shortcuts mentioned below.
 
-The following is a python script made for keyboards like mine that came without built in media controls which are used to control  music players such as spotify or groove music easily and conviently.
+This script is mostly useful when using any windows desktop media player such as spotify for desktop or groove music for the overlay these apps provide when a media key is pressed.
 
 # List of commands
 
