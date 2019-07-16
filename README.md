@@ -5,15 +5,11 @@ A python script made for keyboards without built in media keys in order to contr
     <tbody>
         <tr>
             <th>Play/pause</th>
-            <td>
-                <kbd>Ctrl</kbd> + <kbd>Space</kbd>
-            </td>
+            <td><kbd>Ctrl</kbd> + <kbd>Space</kbd></td>
         </tr>
         <tr>
             <th>Previous</th>
-            <td>
-                <kbd>Ctrl</kbd> + <kbd>←</kbd>
-            </td>
+            <td><kbd>Ctrl</kbd> + <kbd>←</kbd></td>
         </tr>
         <tr>
             <th>Next</th>
@@ -21,7 +17,7 @@ A python script made for keyboards without built in media keys in order to contr
         </tr>
         <tr>
             <th>Volume up</th>
-            <td><kbd>Ctrl</kbd> <kbd>↑</kbd></td>
+            <td><kbd>Ctrl</kbd> + <kbd>↑</kbd></td>
         </tr>
         <tr>
             <th>Volume down</th>
@@ -29,9 +25,7 @@ A python script made for keyboards without built in media keys in order to contr
         </tr>
         <tr>
             <th>Mute</th>
-            <td>
-                <kbd>Ctrl</kbd> + <kbd>M</kbd>
-            </td>
+            <td><kbd>Ctrl</kbd> + <kbd>M</kbd></td>
         </tr>
     </tbody>
 </table>
