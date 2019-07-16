@@ -1,7 +1,10 @@
 # Windows Virtual media keys
+
+
 The following is a python script made for keyboards like mine that came without built in media controls which are used to control  music players such as spotify or groove music easily and conviently.
 
 # List of commands
+
 
 <table>
         <thead>
