@@ -22,7 +22,7 @@ class Ls(object):
         if self.is_control(key):
             self.ctrl = True
         
-        if self.ctrl and self.is_shift(key):
+        if self.ctrl and self.is_alt(key):
             self.enabled = not self.enabled
             self.toaster.show_toast('Media Controller', 'Media keys are {}'.format('enabled' if self.enabled else 'disabled'), duration=1.5, threaded=True)
 
@@ -44,8 +44,8 @@ class Ls(object):
         return k == keyboard.Key.ctrl_l or k == keyboard.Key.ctrl_r
 
     @staticmethod
-    def is_shift(k):
-        return k == keyboard.Key.shift_l or k == keyboard.Key.shift_r
+    def is_alt(k):
+        return k == keyboard.Key.alt_l or k == keyboard.Key.alt_r
 
 
 if __name__ == '__main__':
