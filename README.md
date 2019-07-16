@@ -2,6 +2,12 @@
 A python script made for keyboards without built in media keys in order to control apps such as spotify, groove music, etc...
 
 <table>
+        <thead>
+        <tr>
+            <th>Command</th>
+            <th>Keybind</th>
+        </tr>
+    </thead>
     <tbody>
         <tr>
             <th>Play/pause</th>
