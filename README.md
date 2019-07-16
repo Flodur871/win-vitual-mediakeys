@@ -2,7 +2,7 @@
 
 The following is a python script made in order to enable keyboards that came without built in keyboards controls (such as my work keyboard) to simply use these virtual keys via keyboards shortcuts mentioned below.
 
-This script is mostly useful when using any windows desktop media player such as spotify for desktop or groove music for the overlay these apps provide when a media key is pressed.
+I found this script to be the most useful when using any windows desktop media player such as spotify for desktop or groove music for the overlay these apps provide when a media key is pressed.
 
 # List of commands
 
