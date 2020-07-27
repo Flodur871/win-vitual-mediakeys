@@ -41,7 +41,7 @@ I found this script to be the most useful when using any windows desktop media p
         </tr>
         <tr>
             <th>Disable/enable</th>
-            <td><kbd>Ctrl</kbd> + <kbd>Alt</kbd></td>
+            <td><kbd>Caps Lock</kbd></td>
         </tr>
     </tbody>
 </table>
