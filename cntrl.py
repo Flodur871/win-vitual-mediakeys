@@ -1,7 +1,7 @@
-from win32api import keybd_event
+from win32api import keybd_event, GetKeyState
+import pythoncom
 from pynput import keyboard
-# from win10toast import ToastNotifier
-
+from pyWinCoreAudio import AudioDevices
 
 class Ls:
     def __init__(self):
@@ -10,9 +10,19 @@ class Ls:
         self.kpress = {x.value.vk: self.kpress[x] for x in self.kpress.keys()}  # extract the values of the special keys
         self.kpress[ord('M')] = 0xAD
 
-        # self.toaster = ToastNotifier()
+        audio_devices = [ad for ad in AudioDevices]     # get all audio devices available 
+        for dev in audio_devices:
+            if dev.id == u'{0.0.0.00000000}.{8f75c60b-93f2-4836-bafb-16779e08260b}':    # my speakers uuid
+                speakers = dev.render_endpoints[0]
+            
+            elif dev.id == u'{0.0.0.00000000}.{bf274eca-18cb-4b20-9c0c-751a1734f755}':  # my headphones uuid
+                headphones = dev.render_endpoints[0]
+        
+        self.toggler = {keyboard.Key.up: headphones, keyboard.Key.down: speakers}
+        self.toggler = {x.value.vk: self.toggler[x] for x in self.toggler.keys()}
+
         self.ctrl = False
-        self.enabled = True
+        self.shift = False
         self.listener = keyboard.Listener(on_press=self.on_press, on_release=self.on_release,
                                           win32_event_filter=self.fil)
         self.listener.start()
@@ -23,22 +33,16 @@ class Ls:
         checks whether control and alt are pressed
         :param key: key being pressed
         """
-        # print(dir(key))
-        # print(key)
         if self.is_control(key):
-            # print('Pressed')
             self.ctrl = True
-            
+        
+        elif self.is_shift(key):
+            self.shift = True
+        
         elif 'value' in dir(key):
-            if key.value not in list(self.kpress.values()): # disable overide if hotkey isn't pressed
+            if key.value.vk not in list(self.kpress.values()): # disable overide if hotkey isn't pressed
                 self.ctrl = False
 
-        # if self.ctrl and self.is_alt(key):
-        if self.is_caps(key):
-            self.enabled = not self.enabled
-            # self.toaster.show_toast('Media Controller',
-            #                         'Media keys are {}'.format('enabled' if self.enabled else 'disabled'), duration=1.5,
-            #                         threaded=True)
 
     def on_release(self, key):
         """
@@ -46,8 +50,10 @@ class Ls:
         :param key: key being released
         """
         if self.is_control(key):
-            print('Released')
             self.ctrl = False
+        
+        elif self.is_shift(key):
+            self.shift = False
 
     def fil(self, msg, data):
         """
@@ -55,11 +61,27 @@ class Ls:
         :param msg: msg received
         :param data: data received
         """
-        print(data.flags)
-        if self.enabled and self.ctrl and data.vkCode in self.kpress.keys() and data.flags < 2:
-            self.key_event(self.kpress[data.vkCode])    # simulate media key press
-            self.listener.suppress_event()  # stop the keys from getting sent to the rest of the system
+        # print(data.flags)
+        if not self.is_caps_on() and self.ctrl and data.vkCode in self.kpress.keys() and data.flags < 2:
+            if self.shift:
+                if data.vkCode in list(self.toggler):
+                    pythoncom.CoInitialize()
+                    self.toggler[data.vkCode].set_default()
 
+            else:
+                self.key_event(self.kpress[data.vkCode])    # simulate media key press
+
+            self.listener.suppress_event()  # stop the keys from getting sent to the rest of the system
+    
+
+
+    @staticmethod
+    def is_caps_on():
+        """
+        return true if caps lock is enabled
+        """
+        return GetKeyState(keyboard.Key.caps_lock.value.vk)
+    
     @staticmethod
     def key_event(e):
         """
@@ -71,18 +93,18 @@ class Ls:
     @staticmethod
     def is_control(k):
         """
-        checks whether a key that was pressed is control
+        return true if control was pressed
         :param k: key pressed
         """
         return k == keyboard.Key.ctrl_l or k == keyboard.Key.ctrl_r
-
+    
     @staticmethod
-    def is_caps(k):
+    def is_shift(k):
         """
-        checks whether the key that was pressed is alt
+        return true if shift was pressed
         :param k: key pressed
         """
-        return k == keyboard.Key.caps_lock
+        return k == keyboard.Key.shift_l or k == keyboard.Key.shift_r
 
 
 if __name__ == '__main__':
